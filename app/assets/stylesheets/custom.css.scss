@@ -1,2 +1,39 @@
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
+
+body {
+  padding-top: 70px;
+}
+
+
+.alert-error {
+    background-color: #F2DEDE;
+    border-color: #EED3D7;
+    color: #B94A48;
+    text-align: left;
+}
+
+.alert-alert {
+    background-color: #F2DEDE;
+    border-color: #EBCCD1;
+    color: #A94442;
+    text-align: left;
+}
+
+.alert-success {
+    background-color: #DFF0D8;
+    border-color: #D6E9C6;
+    color: #468847;
+    text-align: left;
+}
+
+.alert-notice {
+    background-color: #DFF0D8;
+    border-color: #D6E9C6;
+    color: #468847;
+    text-align: left;
+}
+
+.listing-posts {
+    padding-top: 30px;
+}
