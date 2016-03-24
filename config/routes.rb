@@ -4,9 +4,18 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   resources :users do
-    resources :posts
+    resources :posts do
+      resources :comments
+    end
   end
 
+  
+  resource :dashboard, only: [:index] do
+    collection do
+      post :search, to: 'dashboard#search'
+    end
+  end
+  
   # You can have the root of your site routed with "root"
    root 'dashboard#index'
 

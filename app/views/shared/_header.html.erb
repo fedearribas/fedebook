@@ -16,10 +16,17 @@
 			    <span class="sr-only">(current)</span>
 			    </li>
 			  </ul>
-			 
+			 <%= form_tag(search_dashboard_path, class:"navbar-form navbar-left", role:"search") do %>
+			  	<div class="form-group">
+			  		<%= text_field_tag :search_name, nil, placeholder:"Search for friends", class:"form-control" %>
+			  	</div>
+			  	<%= button_tag(type: 'submit', class: 'btn btn-default', 'data-toggle' => 'tooltip', title:'Search') do %>
+			  		<span class="glyphicon glyphicon-search"></span>
+			  	<% end %>
+			  <% end %>
 			  <ul class="nav navbar-nav navbar-right">
 			  	<% if user_signed_in? %>
-			  	  <li><%= link_to "#{current_user.first_name}", user_posts_path(current_user) %></li>
+			  	  <li><%= link_to "#{current_user.first_name}", user_path(current_user) %></li>
 				  	<li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
 				  	<div class="navbar-right">
 				  		<p class="navbar-text">

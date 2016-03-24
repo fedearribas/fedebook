@@ -1,27 +1,24 @@
 class PostsController < ApplicationController
   
   before_action :get_user
-  
-  def index
-    @post = @user.posts.new
-    @posts = @user.posts.all
-  end
-  
+  before_action :authenticate_user!
+
   def create
-    @post = get_user.posts.new(posts_param)
+    @post = current_user.posts.new(posts_param)
+    @post.profile_posted = @user.id
     if @post.save
       flash[:success] = "Post successfully added!"
-      redirect_to user_posts_path(get_user)
+      redirect_to :back
     else
       flash[:danger] = "There was a problem adding the post"
     end
   end
   
   def destroy
-    @post = get_user.posts.find(params[:post_id])
+    @post = @user.posts.find(params[:id])
     @post.destroy
     flash[:success] = "Post deleted."
-    redirect_to user_posts_path(get_user)
+    redirect_to :back
   end
   
   
