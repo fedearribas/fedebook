@@ -1,0 +1,1 @@
+$('#comments<%=@pstid%>').append("<%= escape_javascript (render partial: 'posts/comment', :locals => {:comment => @comment, :pst => @pst }) %>");

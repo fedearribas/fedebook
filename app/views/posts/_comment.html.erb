@@ -1,0 +1,5 @@
+<div class="comment">
+  <%= link_to "x", user_post_comment_path(current_user, pst,comment ), class:'close', remote: true, method: :delete if @user == current_user || comment.user_id == current_user.id %>
+  <small><%= link_to User.find(comment.user_id).full_name, user_path(comment.user_id) %> <%= comment.body %></small> <br/>
+  <small><%= time_ago_in_words(comment.created_at) %> ago</small> <hr>
+</div>

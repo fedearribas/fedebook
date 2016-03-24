@@ -11,17 +11,4 @@
   </div>
 </div>
 
-<div class="listing-posts">
-  <div class="row">
-    
-    <div class="col-md-8 col-md-offset-2">
-      <% @posts.each do |pst| %>
-      <div class="well">
-        <%= link_to "x", user_post_path(current_user, pst), class:'close', method: :delete if @user == current_user %>
-        <small><%= link_to @user.first_name, user_posts_path %> <%= time_ago_in_words(pst.created_at)%> ago</small>
-        <p><%= pst.body %></p>
-      </div>
-      <% end %>
-    </div>
-  </div>
-</div>
+

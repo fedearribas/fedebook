@@ -1,0 +1,2 @@
+$('#posts').prepend("<%= escape_javascript (render partial: 'posts/post', :locals => {:pst => @post, :user => @user }) %>");
+$('#post-input-body').val("");

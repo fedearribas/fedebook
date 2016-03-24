@@ -1,63 +1,20 @@
 <div class="row">
   <h1 class="page-header"><%= @user.full_name %>'s Microblog</h1>
   <div class="col-md-8 col-md-offset-2">
-    <%= form_for([@user, @post], :html => {class: "form-horizontal", role: "form"}) do |f| %>
+    <%= form_for([@user, @post], remote: true, :html => {class: "form-horizontal", role: "form"}) do |f| %>
       <div class="col-md-10">
-        <%= f.text_area :body, rows:2, :resize => :none, placeholder: "Type your post!", class:"form-control", :autocomplete => :off %>
+        <%= f.text_area :body, rows:2, :resize => :none, placeholder: "Type your post!", class:"form-control", :autocomplete => :off, id:"post-input-body" %>
       </div>
       <div class="col-md-2">
-          <%= f.submit "Post", class:"btn btn-primary" %>
+          <%= f.submit "Post", id:'newpost', class:"btn btn-primary" %>
       </div>
       <% end %>
   </div>
 </div>
 
-<div class="listing-posts">
-  <div class="row">
-    
-    <div class="col-md-8 col-md-offset-2">
-      <% @posts.each do |pst| %>
-      <div id="post<%=pst.id%>" class="well">
-        <%= link_to "x", user_post_path(current_user, pst), class:'close', method: :delete if @user == current_user || pst.user_id == current_user.id %>
-        
-         
-            <% if pst.user_id != @user.id %>
-              <%= link_to User.find(pst.user_id).full_name, user_path(pst.user_id) %> > <%= link_to @user.full_name, user_path(@user) %>
-            <% else %>
-              <%= link_to @user.full_name, user_path(@user) %>
-            <% end %>
-            <small>
-            <%= time_ago_in_words(pst.created_at)%> ago
-          </small>
-          
-        <p><%= pst.body %></p>
-        
-        <!-- CAJA DE TEXTO DE COMENTARIOS -->
-        <div class="row">
-          <%= form_for([@user, pst, @comment], :html => {class: "form-horizontal", role: "form"}) do |f| %>
-           <div class="col-md-12">
-             <%= f.text_field :body, placeholder: "Leave a comment...", class:"form-control", :autocomplete => :off %>
-            </div>
-            <div class="col-md-2">
-              <%= f.submit "Comment", class:"btn btn-primary", :style => "display: none;" %>
-            </div>
-         <% end %>
-         </div>
-         
-         
-         <!-- SE MUESTRAN LOS COMENTARIOS PARA CADA POST -->
-           <% unless pst.comments.empty? %>
-             <div class="well comments collapse in" id="comments<%=pst.id%>">
-              <% pst.comments.each do |comment| %>
-                <%= link_to "x", user_post_comment_path(current_user, pst,comment ), class:'close', method: :delete if @user == current_user || comment.user_id == current_user.id %>
-                <small><%= link_to User.find(comment.user_id).full_name, user_path(comment.user_id) %> <%= comment.body %></small> <br/>
-                <small><%= time_ago_in_words(comment.created_at) %> ago</small> <hr>
-              <% end %>  
-            </div>
-            <small><a class="btn" data-toggle="collapse" data-parent="#post<%=pst.id%>" data-target="#comments<%=pst.id%>">Hide comments &raquo;</a></small>
-          <% end %>
-       </div>
-      <% end %>
-    </div>
-  </div>
+<div class="listing-posts" id="posts">
+ 
+ 
+ <%= render  partial: "posts/post", :collection => @posts, :as => :pst %> %>
+ 
 </div>
