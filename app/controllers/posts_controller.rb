@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   
   before_action :get_user
   before_action :authenticate_user!
-  
+  skip_before_filter :verify_authenticity_token, :only => :create
 
 
   def create
@@ -39,7 +39,7 @@ class PostsController < ApplicationController
   
   private
     def posts_param
-      params.require(:post).permit(:body)
+      params.require(:post).permit(:body, :avatar)
     end
     
     def get_user

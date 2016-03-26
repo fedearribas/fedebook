@@ -1,20 +1,32 @@
 <div class="row">
-  <h1 class="page-header"><%= @user.full_name %>'s Microblog</h1>
-  <div class="col-md-8 col-md-offset-2">
-    <%= form_for([@user, @post], remote: true, :html => {class: "form-horizontal", role: "form"}) do |f| %>
-      <div class="col-md-10">
-        <%= f.text_area :body, rows:2, :resize => :none, placeholder: "Type your post!", class:"form-control", :autocomplete => :off, id:"post-input-body" %>
-      </div>
-      <div class="col-md-2">
-          <%= f.submit "Post", id:'newpost', class:"btn btn-primary" %>
-      </div>
-      <% end %>
+  
+   
+  <div class="user-cover-container">
+    <%= link_to @user.cover.url, 'data-lightbox' => 'cover-image', 'data-title' => 'Cover image' do %>
+      <%= image_tag @user.cover.url, class:'user-show-cover' %>
+    <% end %>
+  </div>
+   
+  <div class="col-md-2 user-avatar-container">
+    <%= link_to @user.avatar.url, 'data-lightbox' => 'profile-image', 'data-title' => 'Profile image' do %>
+     <%= image_tag @user.avatar.url(:medium), class:'user-show-avatar'  %>
+    <% end %>
+  </div>
+  
+  <div class="col-md-3 user-profile-name">
+    <h2><%= @user.full_name %></h2>
+  </div>
+</div>
+
+<div class="row">
+  <div class="newpost-form col-md-8 col-md-offset-2">
+      <%= render 'posts/newpost' %>
   </div>
 </div>
 
 <div class="listing-posts" id="posts">
  
  
- <%= render  partial: "posts/post", :collection => @posts, :as => :pst %>
+ <%= render  partial: "posts/post", :collection => @posts, :as => :pst %> 
  
 </div>

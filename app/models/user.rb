@@ -10,6 +10,19 @@ class User < ActiveRecord::Base
   validates :last_name, presence: :true
   validates :birth_date, presence: :true
   
+  
+   has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/assets/missing.png"
+  validates_attachment :avatar,
+    #:presence => true,
+    :size => { :in => 0..10.megabytes },
+    :content_type => { :content_type => /^image\/(jpeg|png|gif|tiff)$/ }
+    
+    has_attached_file :cover, styles: { medium: "850x315>"}, default_url: "/assets/missing-cover.png"
+  validates_attachment :cover,
+    #:presence => true,
+    :size => { :in => 0..10.megabytes },
+    :content_type => { :content_type => /^image\/(jpeg|png|gif|tiff)$/ }
+  
   self.per_page = 10
     
   def full_name

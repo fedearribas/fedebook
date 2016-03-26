@@ -1,8 +1,10 @@
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
+@import 'lightbox';
 
 body {
   padding-top: 70px;
+  font-family: 'Open Sans', sans-serif;
 }
 
 
@@ -40,4 +42,105 @@ body {
 
 .comments{
     background: #FDFDFD;
+}
+
+.user-profile-name {
+    font-weight: bolder;
+    color: white;
+     text-shadow: 1px 1px #000000;
+     margin-top: 250px;
+     z-index: 2;
+}
+
+
+.user-avatar-container {
+    margin-top:220px;
+    z-index: 2;
+}
+
+.user-show-avatar {
+    height:170px;
+    width:170px;
+    border-radius:15%;
+    border: 3px solid white;
+    
+}
+
+.user-show-avatar-posts {
+    height:40px;
+    width:40px;
+    border: 1px solid rgba(0,0,0,0.1);
+    //border-radius:15%;
+}
+
+.user-show-avatar-comments {
+    height:32px;
+    width:32px;
+    border: 1px solid rgba(0,0,0,0.1);
+    //border-radius:15%;
+}
+
+.user-cover-container {
+    position: absolute;
+     width: 1000px;
+    height: 315px;
+     overflow:hidden;  
+     z-index: 1;
+}
+
+.user-show-cover {
+  /*  height:315px;
+    width:1000px;
+    background-size:cover; 
+    background-position:center center; 
+  background-repeat:no-repeat; */
+  width: auto;
+  //max-width: 1000px;
+  height: auto;
+ // max-height: 315px;
+    min-width: 100%;
+    min-height: 100%;
+    //border-radius:15%;
+}
+
+
+.newpost-form {
+    //padding-top: 70px;
+}
+
+.post-creator {
+    padding-left:5px;
+}
+.post-username {
+    font-weight: bold;
+}
+
+.comment-creator{
+    padding-left:3px;
+}
+
+.post {
+    margin:10px;
+}
+
+.post .post-body{
+    margin: 0px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+.post-body-content {
+    padding-top: 10px;
+}
+
+.post .comments {
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+}
+
+.section-comments {
+    padding-left:20px;
+}
+.comment-box {
+    padding-left:0px;
 }

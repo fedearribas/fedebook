@@ -3,45 +3,71 @@
       <!-- LISTING POSTS -->
        <div class="row">
          <div class="col-md-8 col-md-offset-2">
-          <div id="post<%=pst.id%>" class="well post">
-            <%= link_to "x", user_post_path(current_user, pst), class:'close', remote: true, method: :delete if @user == current_user || pst.user_id == current_user.id %>
-             
-                <% if pst.user_id != @user.id %>
-                  <%= link_to User.find(pst.user_id).full_name, user_path(pst.user_id) %> > <%= link_to @user.full_name, user_path(@user) %>
-                <% else %>
-                  <%= link_to @user.full_name, user_path(@user) %>
-                <% end %>
-                <small>
-                <%= time_ago_in_words(pst.created_at)%> ago
-                </small>
-              
-                <p><%= pst.body %></p>
-            
-            <!-- CAJA DE TEXTO DE COMENTARIOS -->
+          <div id="post<%=pst.id%>" class="post">
+            <div class="well post-body">
+              <%= link_to "x", user_post_path(current_user, pst), class:'close', remote: true, method: :delete if @user == current_user || pst.user_id == current_user.id %>
             <div class="row">
-              <%= form_for([@user, pst, Comment.new], :html => {class: "form-horizontal", role: "form"}) do |f| %>
-               <div class="col-md-12">
-                 <%= f.text_field :body, placeholder: "Leave a comment...", class:"form-control", :autocomplete => :off %>
-                </div>
-                <div class="col-md-2">
-                  <%= f.submit "Comment", class:"btn btn-primary", remote: true, :style => "display: none;" %>
+              <div class="col-md-1">
+                <%= image_tag User.find(pst.user_id).avatar.url(:thumb), class:'user-show-avatar-posts'  %>
+              </div>
+              <div class="col-md-10 post-creator">
+                <% if pst.user_id != @user.id %>
+                  <%= link_to User.find(pst.user_id).full_name, user_path(pst.user_id), class:'post-username' %> > <%= link_to @user.full_name, user_path(@user), class:'post-username' %>
+                <% else %>
+                  <%= link_to @user.full_name, user_path(@user), class:'post-username' %>
+                <% end %> <br/>
+                <small>
+                  <%= time_ago_in_words(pst.created_at)%> ago
+                </small>
+              </div>
+            </div>
+            <div class="post-body-content">
+              <div>
+                <%= pst.body %>
+              </div>
+              
+              <% if pst.avatar.exists? %>
+                <div>
+                  <%= link_to pst.avatar.url, 'data-lightbox' => "image#{pst.id}", 'data-title' => "#{pst.body}" do %>
+                    <%= image_tag pst.avatar.url(:medium) %>
+                  <% end %>
                 </div>
              <% end %>
-             </div>
+            </div>
+              
+               <% unless pst.comments.empty? %>
+                 <a class="btn" data-toggle="collapse" data-parent="#post<%=pst.id%>" data-target="#comments<%=pst.id%>"> <small>Hide comments &raquo;</small></a>
+               <% end %>
+               
+            </div>
+          
     
              
-             <!-- SE MUESTRAN LOS COMENTARIOS PARA CADA POST -->
-               <% unless pst.comments.empty? %>
-                 <div class="well comments collapse in" id="comments<%=pst.id%>">
-                  
-                    
-                     <%= render partial: "posts/comment", :collection => pst.comments, :as => :comment, :locals => { :pst => pst} %>
-                 
-                </div>
-                <small><a class="btn" data-toggle="collapse" data-parent="#post<%=pst.id%>" data-target="#comments<%=pst.id%>">Hide comments &raquo;</a></small>
+           <!-- SE MUESTRAN LOS COMENTARIOS PARA CADA POST -->
+           
+             <div class="well comments" >
+              <% unless pst.comments.empty? %>
+              <section class="collapse in section-comments" id="comments<%=pst.id%>">
+                <%= render partial: "posts/comment", :collection => pst.comments, :as => :comment, :locals => { :pst => pst} %>
+                </section>
               <% end %>
+              <!-- CAJA DE TEXTO DE COMENTARIOS -->
+              <div class="row">
+               <div class="col-md-1"><%= image_tag current_user.avatar.url(:thumb), class:'user-show-avatar-comments'  %></div>
+                <%= form_for([@user, pst, Comment.new], :html => {class: "form-horizontal", role: "form"}) do |f| %>
+                 <div class="col-md-11 comment-box">
+                   <%= f.text_field :body, placeholder: "Leave a comment...", class:"form-control", :autocomplete => :off %>
+                  </div>
+                  <div class="col-md-2">
+                    <%= f.submit "Comment", class:"btn btn-primary", remote: true, :style => "display: none;" %>
+                  </div>
+               <% end %>
+             </div>
+            </div>
+            
           </div>
-          </div>
-       </div>
+        </div>
+     </div>
+       
       
  
