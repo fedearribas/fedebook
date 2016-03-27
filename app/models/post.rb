@@ -10,10 +10,6 @@ class Post < ActiveRecord::Base
     :content_type => { :content_type => /^image\/(jpeg|png|gif|tiff)$/ }
     
     default_scope { order(created_at: :desc) }
-
-    def self.all_by_profile(profile)
-       where(profile_posted: profile) 
-    end
     
 end
 

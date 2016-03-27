@@ -14,19 +14,28 @@
   </div>
   
   <div class="col-md-3 user-profile-name">
-    <h2><%= @user.full_name %></h2>
+    <h2><%= @user.full_name %></h2> <br/>
+     <div>
+        <% if current_user %>
+        <%= link_to "Follow", friendships_path(friend_id: @user.id), method: :post, class:"btn btn-primary" unless current_user.follows_or_same?(@user) %>
+        <%= link_to "Unfollow", friendship_path(current_user.current_friendship(@user)), method: :delete,  data: {confirm: "Are you sure?"}, class:"btn btn-danger" unless current_user.not_follows(@user) %>
+      <% end %>
+      </div>
   </div>
+  
 </div>
 
+<% if current_user.follows_or_same?(@user) %>
 <div class="row">
   <div class="newpost-form col-md-8 col-md-offset-2">
       <%= render 'posts/newpost' %>
   </div>
 </div>
+<% end %>
 
 <div class="listing-posts" id="posts">
  
  
- <%= render  partial: "posts/post", :collection => @posts, :as => :pst %> 
+ <%= render  partial: "posts/post", :collection => @user.posts_by_profile, :as => :pst %> 
  
 </div>

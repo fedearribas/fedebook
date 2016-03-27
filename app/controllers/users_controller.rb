@@ -10,7 +10,6 @@ before_action :authenticate_user!, only: [:show]
   def show
     @user = User.find(params[:id])
     @post = @user.posts.build
-    @posts = Post.all_by_profile(@user)
     @comment = Comment.new
   end
   

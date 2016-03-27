@@ -4,7 +4,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   
-  has_many :posts       
+  has_many :posts
+  has_many :friendships
+  has_many :friends, through: :friendships, class_name: "User"
   
   validates :first_name, presence: :true
   validates :last_name, presence: :true
@@ -33,6 +35,52 @@ class User < ActiveRecord::Base
      where('first_name LIKE ? or last_name LIKE ?',
       "%#{name}%", "%#{name}%").order(:first_name)
   end
+  
+  def follows_or_same?(new_friend)
+    friendships.map(&:friend).include?(new_friend) || self == new_friend
+  end
+  
+  def not_follows(new_friend)
+    !friendships.map(&:friend).include?(new_friend)
+  end
+  
+  def current_friendship(friend)
+    friendships.where(friend: friend).first
+  end
+  
+  def posts_by_profile
+    posts = Post.where(profile_posted: self)
+    return posts
+  end
+
+  def followed_feed
+    friends = friendships.where(user: self)
+    followed = []
+    feed = []
+    friends.each do |f|
+      followed.push(User.find(f.friend_id))
+    end
+    followed.push(self)
+    followed.each do |fol|
+      feed.push(fol.posts_by_profile).flatten!
+    end
+    feed.sort! { |x,y| y.created_at <=> x.created_at }
+    return feed
+  end
+  
+  def followers
+    #followers = friendships.where(friend: self)
+    followers = []
+    friendships.where(friend: self).each do |follower|
+      followers.push(User.find(follower.user_id))
+    end
+    return followers
+    
+  end
+  
+  def followed
+  end
+
   
 end
 

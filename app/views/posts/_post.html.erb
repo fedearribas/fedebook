@@ -5,16 +5,16 @@
          <div class="col-md-8 col-md-offset-2">
           <div id="post<%=pst.id%>" class="post">
             <div class="well post-body">
-              <%= link_to "x", user_post_path(current_user, pst), class:'close', remote: true, method: :delete if @user == current_user || pst.user_id == current_user.id %>
+              <%= link_to "x", user_post_path(current_user, pst), class:'close', remote: true, method: :delete if pst.profile_posted == current_user.id || pst.user_id == current_user.id %>
             <div class="row">
               <div class="col-md-1">
                 <%= image_tag User.find(pst.user_id).avatar.url(:thumb), class:'user-show-avatar-posts'  %>
               </div>
               <div class="col-md-10 post-creator">
-                <% if pst.user_id != @user.id %>
-                  <%= link_to User.find(pst.user_id).full_name, user_path(pst.user_id), class:'post-username' %> > <%= link_to @user.full_name, user_path(@user), class:'post-username' %>
+                <% if pst.user_id != pst.profile_posted %>
+                  <%= link_to User.find(pst.user_id).full_name, user_path(pst.user_id), class:'post-username' %> > <%= link_to User.find(pst.profile_posted).full_name, user_path(pst.profile_posted), class:'post-username' %>
                 <% else %>
-                  <%= link_to @user.full_name, user_path(@user), class:'post-username' %>
+                  <%= link_to User.find(pst.user_id).full_name, user_path(pst.user_id), class:'post-username' %>
                 <% end %> <br/>
                 <small>
                   <%= time_ago_in_words(pst.created_at)%> ago
@@ -52,17 +52,21 @@
                 </section>
               <% end %>
               <!-- CAJA DE TEXTO DE COMENTARIOS -->
-              <div class="row">
-               <div class="col-md-1"><%= image_tag current_user.avatar.url(:thumb), class:'user-show-avatar-comments'  %></div>
-                <%= form_for([@user, pst, Comment.new], :html => {class: "form-horizontal", role: "form"}) do |f| %>
-                 <div class="col-md-11 comment-box">
-                   <%= f.text_field :body, placeholder: "Leave a comment...", class:"form-control", :autocomplete => :off %>
-                  </div>
-                  <div class="col-md-2">
-                    <%= f.submit "Comment", class:"btn btn-primary", remote: true, :style => "display: none;" %>
-                  </div>
-               <% end %>
-             </div>
+              
+              <% if current_user.follows_or_same?(User.find(pst.profile_posted)) %>
+                <div class="row">
+                 <div class="col-md-1"><%= image_tag current_user.avatar.url(:thumb), class:'user-show-avatar-comments'  %></div>
+                  <%= form_for([User.find(pst.profile_posted), pst, Comment.new], :html => {class: "form-horizontal", role: "form"}) do |f| %>
+                   <div class="col-md-11 comment-box">
+                     <%= f.text_field :body, placeholder: "Leave a comment...", class:"form-control", :autocomplete => :off %>
+                    </div>
+                    <div class="col-md-2">
+                      <%= f.submit "Comment", class:"btn btn-primary", remote: true, :style => "display: none;" %>
+                    </div>
+                 <% end %>
+               </div>
+             <% end %>
+             
             </div>
             
           </div>

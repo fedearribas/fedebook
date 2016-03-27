@@ -1,11 +1,23 @@
-<div class="jumbotron">
-  <h1>Welcome to the MicroBlog</h1>
-</div>
+<% if !user_signed_in? %>
+  <div class="jumbotron">
+    <h1>Welcome to the MicroBlog</h1>
+  </div>
+<% end %>
 
-<h1 class="page-header">Lastest friend's activity</h1>
+<% if current_user %>
+
+  <% if current_user.follows_or_same?(@user) %>
+    <div class="row">
+      <div class="newpost-form col-md-8 col-md-offset-2">
+          <%= render 'posts/newpost' %>
+      </div>
+    </div>
+  <% end %>
 
 <div class="row">
-  <div class="col-md-8">
-    
+  <div class="col-md-12" id="posts">
+      <%= render  partial: "posts/post", :collection => @friends_feed, :as => :pst  %> 
+ 
   </div>
 </div>
+<% end %>

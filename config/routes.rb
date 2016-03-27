@@ -16,6 +16,8 @@ Rails.application.routes.draw do
     end
   end
   
+    resources :friendships, only: [:show, :create, :destroy]
+  
   # You can have the root of your site routed with "root"
    root 'dashboard#index'
 
