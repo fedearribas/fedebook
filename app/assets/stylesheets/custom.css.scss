@@ -44,18 +44,26 @@ body {
     background: #FDFDFD;
 }
 
-.user-profile-name {
-    font-weight: bolder;
-    color: white;
-     text-shadow: 1px 1px #000000;
+.user-profile-name-container {
      margin-top: 250px;
      z-index: 2;
 }
 
+.user-profile-name {
+    font-weight: bolder;
+    color: white;
+     text-shadow: 1px 1px #000000;
+}
+
 .user-profile-follow-btns {
-    margin-top:350px;
+    margin-top:325px;
     z-index: 2;
 }
+
+.tabs-profile {
+    margin-top: 10px;
+}
+
 
 .user-avatar-container {
     margin-top:220px;
@@ -108,8 +116,9 @@ body {
 }
 
 
+
 .newpost-form {
-    //padding-top: 70px;
+    padding-top: 20px;
 }
 
 .post-creator {

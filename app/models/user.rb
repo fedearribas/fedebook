@@ -69,16 +69,23 @@ class User < ActiveRecord::Base
   end
   
   def followers
-    #followers = friendships.where(friend: self)
     followers = []
-    friendships.where(friend: self).each do |follower|
+    Friendship.where(friend: self).each do |follower|
       followers.push(User.find(follower.user_id))
     end
     return followers
-    
   end
   
   def followed
+    followed = []
+    friendships.where(user: self).each do |follow|
+      followed.push(User.find(follow.friend_id))
+    end
+    return followed
+  end
+  
+  def followed_by_and_follower?(user)
+    (followed.include?(user) && followers.include?(user)) || self == user
   end
 
   

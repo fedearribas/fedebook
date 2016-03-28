@@ -9,7 +9,7 @@
           <div class="col-md-6 post-creator">
               <%= link_to user.full_name, user_path(user), class:'post-username' %>
           </div>
-          <div class="col-md-1">
+          <div class="col-md-1 pull-right">
             <% if current_user %>
               <%= link_to "Follow", friendships_path(friend_id: user.id), method: :post, class:"btn btn-primary pull-right" unless current_user.follows_or_same?(user) %>
               <%= link_to "Unfollow", friendship_path(current_user.current_friendship(user)), method: :delete,  data: {confirm: "Are you sure?"}, class:"btn btn-danger pull-right" unless current_user.not_follows(user) %>

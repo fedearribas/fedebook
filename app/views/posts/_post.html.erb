@@ -52,8 +52,7 @@
                 </section>
               <% end %>
               <!-- CAJA DE TEXTO DE COMENTARIOS -->
-              
-              <% if current_user.follows_or_same?(User.find(pst.profile_posted)) %>
+              <% if current_user.followed_by_and_follower?(User.find(pst.profile_posted)) %>
                 <div class="row">
                  <div class="col-md-1"><%= image_tag current_user.avatar.url(:thumb), class:'user-show-avatar-comments'  %></div>
                   <%= form_for([User.find(pst.profile_posted), pst, Comment.new], :html => {class: "form-horizontal", role: "form"}) do |f| %>

@@ -5,19 +5,24 @@
 <% end %>
 
 <% if current_user %>
-
-  <% if current_user.follows_or_same?(@user) %>
-    <div class="row">
-      <div class="newpost-form col-md-8 col-md-offset-2">
-          <%= render 'posts/newpost' %>
-      </div>
+  <div class="jumbotron container-fluid" id="microblog-header">
+    <div class="text-center">
+     <h1 class="blog-title">Welcome to the MicroBlog!</h1>
+     <p class="lead">Relax and have fun.</p>
+     <p><a class="btn btn-lg btn-success" data-toggle="collapse" data-parent="#microblog-header" data-target="#section-newpost">Share Something</a></p>
+   </div>
+  
+    <div id="section-newpost" class="collapse col-md-8 col-md-offset-2">
+      <%= render 'posts/newpost' %>
     </div>
-  <% end %>
+    
+  </div>
 
+
+<h3 class="page-header">Recent activity</h3>    
 <div class="row">
   <div class="col-md-12" id="posts">
       <%= render  partial: "posts/post", :collection => @friends_feed, :as => :pst  %> 
- 
   </div>
 </div>
 <% end %>
