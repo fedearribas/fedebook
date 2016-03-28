@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     resources :friendships, only: [:show, :create, :destroy]
   
   # You can have the root of your site routed with "root"
-   root 'dashboard#index'
+   root to: 'dashboard#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -1,13 +1,22 @@
 <% if !user_signed_in? %>
   <div class="jumbotron">
-    <h1>Welcome to the MicroBlog</h1>
+    <h1>Welcome to the FedeBook!</h1>
+    <p class="lead">Please join us to start Fedebooking right now.</p> <br/>
+    <div class="row">
+      <div class="col-md-6">
+        <%= link_to "Sign in", new_user_session_path, class:'btn btn-lg btn-primary btn-block' %>
+      </div>
+      <div class="col-md-6">
+    	  <%= link_to "Sign up", new_user_registration_path, class: 'btn btn-lg btn-success btn-block' %>
+    	</div>
+    </div>
   </div>
 <% end %>
 
 <% if current_user %>
   <div class="jumbotron container-fluid" id="microblog-header">
     <div class="text-center">
-     <h1 class="blog-title">Welcome to the MicroBlog!</h1>
+     <h1 class="blog-title">Welcome to the FedeBook!</h1>
      <p class="lead">Relax and have fun.</p>
      <p><a class="btn btn-lg btn-success" data-toggle="collapse" data-parent="#microblog-header" data-target="#section-newpost">Share Something</a></p>
    </div>
