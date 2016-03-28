@@ -5,6 +5,7 @@
 body {
   padding-top: 70px;
   font-family: 'Open Sans', sans-serif;
+  background: #FBFBFB;
 }
 
 
@@ -64,32 +65,45 @@ body {
     margin-top: 10px;
 }
 
-
+.user-avatar-wrapper {
+   margin-top:220px;
+   z-index: 2;
+}
 .user-avatar-container {
-    margin-top:220px;
-    z-index: 2;
+    height:170px;
+    width:170px;
+    overflow: hidden;
+    border: 3px solid white;
+    border-radius:15%;
 }
 
 .user-show-avatar {
     height:170px;
-    width:170px;
-    border-radius:15%;
-    border: 3px solid white;
-    
+    width:auto;
+}
+
+.user-show-avatar-posts-container {
+  height:40px;
+  width:40px;
+  border: 1px solid rgba(0,0,0,0.1);
+  overflow: hidden;
 }
 
 .user-show-avatar-posts {
     height:40px;
-    width:40px;
+    width:auto;
+}
+
+.user-show-avatar-comments-container {
+   height:32px;
+    width:32px;
     border: 1px solid rgba(0,0,0,0.1);
-    //border-radius:15%;
+    overflow: hidden;
 }
 
 .user-show-avatar-comments {
     height:32px;
-    width:32px;
-    border: 1px solid rgba(0,0,0,0.1);
-    //border-radius:15%;
+    width:auto;
 }
 
 .user-cover-container {
@@ -98,21 +112,15 @@ body {
     height: 315px;
      overflow:hidden;  
      z-index: 1;
+     border: 3px solid white;
 }
 
 .user-show-cover {
-  /*  height:315px;
-    width:1000px;
-    background-size:cover; 
-    background-position:center center; 
-  background-repeat:no-repeat; */
   width: auto;
-  //max-width: 1000px;
   height: auto;
- // max-height: 315px;
-    min-width: 100%;
-    min-height: 100%;
-    //border-radius:15%;
+  min-width: 100%;
+  min-height: 100%;
+
 }
 
 

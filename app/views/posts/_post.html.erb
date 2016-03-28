@@ -8,7 +8,9 @@
               <%= link_to "x", user_post_path(current_user, pst), class:'close', remote: true, method: :delete if pst.profile_posted == current_user.id || pst.user_id == current_user.id %>
             <div class="row">
               <div class="col-md-1">
-                <%= image_tag User.find(pst.user_id).avatar.url(:thumb), class:'user-show-avatar-posts'  %>
+                <div class="user-show-avatar-posts-container">
+                  <%= image_tag User.find(pst.user_id).avatar.url(:thumb), class:'user-show-avatar-posts'  %>
+                </div>
               </div>
               <div class="col-md-10 post-creator">
                 <% if pst.user_id != pst.profile_posted %>
@@ -54,7 +56,11 @@
               <!-- CAJA DE TEXTO DE COMENTARIOS -->
               <% if current_user.followed_by_and_follower?(User.find(pst.profile_posted)) %>
                 <div class="row">
-                 <div class="col-md-1"><%= image_tag current_user.avatar.url(:thumb), class:'user-show-avatar-comments'  %></div>
+                 <div class="col-md-1">
+                   <div class="user-show-avatar-comments-container">
+                     <%= image_tag current_user.avatar.url(:thumb), class:'user-show-avatar-comments'  %>
+                   </div>
+                  </div>
                   <%= form_for([User.find(pst.profile_posted), pst, Comment.new], :html => {class: "form-horizontal", role: "form"}) do |f| %>
                    <div class="col-md-11 comment-box">
                      <%= f.text_field :body, placeholder: "Leave a comment...", class:"form-control", :autocomplete => :off %>

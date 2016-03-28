@@ -8,10 +8,12 @@
     <% end %>
   </div>
    
-  <div class="col-md-2 user-avatar-container">
-    <%= link_to @user.avatar.url, 'data-lightbox' => 'profile-image', 'data-title' => 'Profile image' do %>
-     <%= image_tag @user.avatar.url(:medium), class:'user-show-avatar'  %>
-    <% end %>
+  <div class="col-md-2 user-avatar-wrapper">
+    <div class="user-avatar-container">
+      <%= link_to @user.avatar.url, 'data-lightbox' => 'profile-image', 'data-title' => 'Profile image' do %>
+       <%= image_tag @user.avatar.url(:medium), class:'user-show-avatar'  %>
+      <% end %>
+    </div>
   </div>
   
   <div class="col-md-3 user-profile-name-container">
