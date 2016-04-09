@@ -1,5 +1,5 @@
 <div class="comment">
-  <%= link_to "x", user_post_comment_path(current_user, pst,comment ), class:'close', remote: true, method: :delete if pst.user_id == current_user.id || comment.user_id == current_user.id || pst.profile_posted == current_user.id %>
+  <%= link_to "x", user_post_comment_path(current_user, pst,comment ), class:'close', remote: true, method: :delete if comment.user_id == current_user.id || pst.profile_posted == current_user.id %>
   <div class="row">
     <div class="col-md-1">
       <div class="user-show-avatar-comments-container">

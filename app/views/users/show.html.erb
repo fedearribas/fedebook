@@ -32,7 +32,7 @@
      <ul class="nav nav-tabs">
         <li class="active"><a data-toggle="tab" href="#wall">Wall</a></li>
         <li><a data-toggle="tab" href="#followers">Followers</a></li>
-        <li><a data-toggle="tab" href="#followed">Followed</a></li>
+        <li><a data-toggle="tab" href="#followed">Following</a></li>
       </ul>
   </div>
   
@@ -85,7 +85,7 @@
     
   <div id="followed" class="tab-pane fade">
     <div class="col-md-8 col-md-offset-2">
-      <h3>Followed</h3>
+      <h3>Following</h3>
       <% if current_user.followed_by_and_follower?(@user) %>
         <% @user.followed.each do |f| %>
           <div class="well member">

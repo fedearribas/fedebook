@@ -6,11 +6,11 @@ class CommentsController < ApplicationController
     @comment.user_id = current_user.id
     if @comment.save
       redirect_to :back
-    #  respond_to do |format|
-    #  format.html { redirect_to :back }
-    #  format.json { head :no_content }
-    #  format.js 
-    #  end
+      #respond_to do |format|
+      #format.html { redirect_to :back }
+      #format.json { head :no_content }
+      #format.js 
+      #end
     end
   end
   

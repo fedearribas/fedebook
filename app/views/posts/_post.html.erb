@@ -12,7 +12,7 @@
                   <%= image_tag User.find(pst.user_id).avatar.url(:thumb), class:'user-show-avatar-posts'  %>
                 </div>
               </div>
-              <div class="col-md-10 post-creator">
+              <div class="col-md-8 post-creator">
                 <% if pst.user_id != pst.profile_posted %>
                   <%= link_to User.find(pst.user_id).full_name, user_path(pst.user_id), class:'post-username' %> > <%= link_to User.find(pst.profile_posted).full_name, user_path(pst.profile_posted), class:'post-username' %>
                 <% else %>
@@ -46,11 +46,11 @@
     
              
            <!-- SE MUESTRAN LOS COMENTARIOS PARA CADA POST -->
-           
+           <%@pst = pst%>
              <div class="well comments" >
               <% unless pst.comments.empty? %>
-              <section class="collapse in section-comments" id="comments<%=pst.id%>">
-                <%= render partial: "posts/comment", :collection => pst.comments, :as => :comment, :locals => { :pst => pst} %>
+              <section class="collapse in section-comments" id="comments<%=@pst.id%>">
+                <%= render partial: "posts/comment", :collection => pst.comments, :as => :comment, :locals => { :pst => @pst} %>
                 </section>
               <% end %>
               <!-- CAJA DE TEXTO DE COMENTARIOS -->
@@ -61,12 +61,12 @@
                      <%= image_tag current_user.avatar.url(:thumb), class:'user-show-avatar-comments'  %>
                    </div>
                   </div>
-                  <%= form_for([User.find(pst.profile_posted), pst, Comment.new], :html => {class: "form-horizontal", role: "form"}) do |f| %>
+                  <%= form_for([User.find(pst.profile_posted), pst, Comment.new], remote: true,  :html => {class: "form-horizontal", role: "form"}) do |f| %>
                    <div class="col-md-11 comment-box">
                      <%= f.text_field :body, placeholder: "Leave a comment...", class:"form-control", :autocomplete => :off %>
                     </div>
                     <div class="col-md-2">
-                      <%= f.submit "Comment", class:"btn btn-primary", remote: true, :style => "display: none;" %>
+                      <%= f.submit "Comment", class:"btn btn-primary", :style => "display: none;" %>
                     </div>
                  <% end %>
                </div>
