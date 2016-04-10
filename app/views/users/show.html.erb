@@ -10,7 +10,7 @@
    
   <div class="col-md-2 user-avatar-wrapper">
     <div class="user-avatar-container">
-      <%= link_to @user.avatar.url, 'data-lightbox' => 'profile-image', 'data-title' => 'Profile image' do %>
+      <%= link_to "#","data-toggle"=>"modal", "data-target"=>"#myModal" do %>
        <%= image_tag @user.avatar.url(:medium), class:'user-show-avatar'  %>
       <% end %>
     </div>
@@ -26,6 +26,54 @@
       <%= link_to "Follow", friendships_path(friend_id: @user.id), method: :post, class:"btn btn-primary" unless current_user.follows_or_same?(@user) %>
       <%= link_to "Unfollow", friendship_path(current_user.current_friendship(@user)), method: :delete,  data: {confirm: "Are you sure?"}, class:"btn btn-danger" unless current_user.not_follows(@user) %>
     <% end %>
+    
+    <p><%=link_to "Change Picture","#","data-toggle"=>"modal", "data-target"=>"#myModal"%></p>
+
+
+
+
+<!-- Modal -->
+<div class="modal fade image_modal" id="myModal" tabindex="-1" role="dialog" 
+   aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" 
+               data-dismiss="modal" aria-hidden="true">
+                  &times;
+            </button>
+            <h4 class="modal-title" id="myModalLabel">
+               Profile Picture
+            </h4>
+         </div>
+         <div class="modal-body">
+            <div >
+              <%= image_tag current_user.avatar.url, :class=>"img-thumbnail" %>
+            </div>
+         </div>  
+         
+           <div class="modal-footer">
+              <%= form_for(current_user, :url => '/upload_image',:id=>"upload_image_form",:class=>"form-inline",:method=>"POST",:multipart=>true,:remote=>true,:authenticity_token => true ) do |f| %>
+                <div class="form-group col-md-6">
+                  <%= f.label "Change Picture" %>
+                  <%= f.file_field :avatar %>
+                  </div>
+                
+                    <div class="form-group">
+                    <%= f.submit 'Upload',:class=>"btn btn-primary" %> 
+                  </div>
+               
+                <% end %>
+                </div>
+            
+         
+      </div><!-- /.modal-content -->
+    </div>
+  </div>
+
+
+
+
   </div>
     
   <div class="tabs-profile col-md-8">

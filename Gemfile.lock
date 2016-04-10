@@ -136,6 +136,10 @@ GEM
       cocaine (~> 0.5.5)
       mime-types
       mimemagic (= 0.3.0)
+    papercrop (0.3.0)
+      jquery-rails
+      paperclip (>= 3.4)
+      rails (>= 3.1)
     pg (0.18.4)
     pry (0.10.3)
       coderay (~> 1.1.0)
@@ -264,6 +268,7 @@ DEPENDENCIES
   jquery-ui-rails (= 5.0.5)
   lightbox2-rails
   paperclip (~> 4.1)
+  papercrop
   pg
   rails (= 4.2.5)
   rails_12factor

@@ -61,7 +61,7 @@
                      <%= image_tag current_user.avatar.url(:thumb), class:'user-show-avatar-comments'  %>
                    </div>
                   </div>
-                  <%= form_for([User.find(pst.profile_posted), pst, Comment.new], remote: true,  :html => {class: "form-horizontal", role: "form"}) do |f| %>
+                  <%= form_for([User.find(pst.profile_posted), pst, Comment.new], :html => {class: "form-horizontal", role: "form"}) do |f| %>
                    <div class="col-md-11 comment-box">
                      <%= f.text_field :body, placeholder: "Leave a comment...", class:"form-control", :autocomplete => :off %>
                     </div>

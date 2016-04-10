@@ -17,6 +17,10 @@ Rails.application.routes.draw do
   end
   
     resources :friendships, only: [:show, :create, :destroy]
+    
+    
+    match 'crop_image' => 'users#crop_image', via: [:put]
+  match 'upload_image' => 'users#upload_image', via: [:post]
   
   # You can have the root of your site routed with "root"
    root to: 'dashboard#index'
