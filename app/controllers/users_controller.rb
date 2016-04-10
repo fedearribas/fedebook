@@ -13,21 +13,13 @@ before_action :authenticate_user!, only: [:show]
     @comment = Comment.new
   end
   
-  def upload_image
-    current_user.avatar = (params[:user][:avatar])
-    if current_user.save
-        redirect_to :back
-    end
-    #respond_to do |format|
-    #    format.js
-    # end
-  end
+  
 
-   def crop_image
-    if  current_user.update(params[:user].permit!)
-     redirect_to :back
+  def crop_image
+    if current_user.update(params[:user].permit!)
+      redirect_to :back
     end
-   end
+  end
   
   private
   
