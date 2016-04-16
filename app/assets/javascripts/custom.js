@@ -1,76 +1,81 @@
 $(document).ready(function(){
     
-   /*var avatarOrig;
+   var avatarOrig;
    var avatarDefault;
    
-   var modalOriginalWidth;
+   /*var modalOriginalWidth;
    var modalOriginalHeight;
    var modalOriginalMaxHeight;
    
    var avatarOriginalHeight;*/
    
    var cropView = document.getElementById("avatar-upload");
-   var UpdateNewAvatarView = document.getElementById("avatar-upload-2");
+   var visitView =document.getElementById("avatar-upload-2")
    
    if (cropView) {
     document.getElementById("avatar-upload").onchange = function () {
         var reader = new FileReader();
     
         reader.onload = function (e) {
-          //avatarOrig = $("#avatar_cropbox").find("div").find("img").attr("src");
+
           var image = new Image();
           image.src = e.target.result;
-         
           
-          /*modalOriginalWidth = $('.modal-body').css('width');
-          modalOriginalHeight = $('.modal-body').css('height');
-          modalOriginalMaxHeight = $('.modal-body').css('max-height');
-          
-           avatarOriginalHeight = $(".jcrop-holder").css('height');*/
+           avatarOrig = $("#avatar_cropbox").find("div").find("img").attr("src");
+           avatarDefault = $(".avatar-view").attr("src");
           
           image.onload = function() {
               // get loaded data and render thumbnail.
             $("#avatar_cropbox").find("div").find("img").attr("src", e.target.result);
-            $("#avatar_cropbox").find("div").find("img").height('auto');
-            $("#avatar_cropbox").find("div").find("img").width(550);
-           
             
-            var h = $(".jcrop-holder").find("img").css('height');
-            
-          
-            //var h = $("#avatar_cropbox").find("div").find("img").css('height');
-            
-            //var h = $("#avatar_cropbox").css('height');
-          $("#avatar_cropbox").css({
-              'min-height':h
+            /*
+            $("#avatar_cropbox").find("div").find("img").css({
+             "max-height": "650px",
+             width:'auto'
             });
+            
+            var h = parseInt($(".jcrop-holder").find("img").naturalHeight);
+            var w = parseInt($(".jcrop-holder").find("img").naturalWidth);
+
+            $("#avatar_cropbox").css({
+                //'min-height':h
+                 height:h,
+                width: w,
+                 'max-height':'100%'
+              });
             
             $(".jcrop-holder").css({
-              height:h
+              height:h,
+              width: w
             });
               $(".jcrop-tracker").css({
-              height:h
+              height:h,
+              width: w
             });
-           
-           
-           /* $("#avatar_cropbox").css({
-              height:h
-            });*/
             
             $(".jcrop-holder").children().first().css({
               height:h,
+              width: w,
                'max-height':'100%',
                 'max-width':'100%'
             });
             
-           
-            $('.modal').find('.modal-body').css({width:550,
-            height:'auto' ,
-           // 'min-height':h,
-                                'max-height':'100%'});
+            $('#avatarModal').find('.modal-body').css({
+            //  width: wModal + 30,
+              height:h ,
+              width: w,
+              'max-height':'100%'
+            });
+            
+            $('#avatarModal').find('.modal-dialog').css({
+              width:w,
+              height:h ,
+              'max-height':'100%'
+            });
+          */
+          
+          };
          
-            };
-        
         }
     
         // read the image file as a data URL.
@@ -78,7 +83,7 @@ $(document).ready(function(){
     };
    }
     
-    if (UpdateNewAvatarView) {
+    if (visitView) {
       document.getElementById("avatar-upload-2").onchange = function () {
       var reader = new FileReader();
   
@@ -92,7 +97,7 @@ $(document).ready(function(){
         image.onload = function() {
             // get loaded data and render thumbnail.
           $("#avatar-view").attr("src", e.target.result);
-          $("#avatar-view").height(700);
+         // $("#avatar-view").height(700);
         };
       }
   
@@ -103,13 +108,16 @@ $(document).ready(function(){
     
     // PARA RESETEAR EL MODAL CUANDO SE CIERRA, NOT WORKING YET
 
-  /*  $('.modal').on('hidden.bs.modal', function(){
-      $(this).find('form')[0].reset();
-    
-        $("#avatar-view").attr("src",avatarDefault);
-        $("#avatar_cropbox").find("div").find("img").attr("src",avatarOrig);
+    $('.modal').on('hidden.bs.modal', function(){
+      if (cropView) {
+        $(this).find('form')[0].reset();
+         $("#avatar_cropbox").find("div").find("img").attr("src",avatarOrig);
+      }
+      else {
+       $(".avatar-view").attr("src",avatarDefault);
+      }
       
-       $('.modal').find('.modal-body').css({width:modalOriginalWidth,
+      /* $('.modal').find('.modal-body').css({width:modalOriginalWidth,
                                  height:modalOriginalHeight, 
                                 'max-height':modalOriginalMaxHeight});
                                 
@@ -119,7 +127,33 @@ $(document).ready(function(){
             
              
         $(".jcrop-holder").find("img").height(avatarOriginalHeight);
-        $(".jcrop-holder").find("img").width(550);
+        $(".jcrop-holder").find("img").width(550);*/
        
-    });*/
+    });
+    
+  $('#coverModal').on('show.bs.modal', function () {
+    $(this).find('.modal-dialog').css({
+      width:  parseInt($('.cover').css('width'))+ 30,
+      height:'auto', 
+      'max-height':'100%'
+    });
+  });
+  
+    $('#avatarModal').on('show.bs.modal', function () {
+      var awidth;
+      if (cropView) {
+        awidth = parseInt($("#avatar_cropbox").find("div").find("img").css('width'))+ 30;
+      }
+      else {
+        awidth = parseInt($(".avatar-view").css('width'))+ 30;
+      }
+      
+    $(this).find('.modal-dialog').css({
+      width:  awidth,
+      height:'auto', 
+      'max-height':'100%'
+    });
+  });
+   
 });
+

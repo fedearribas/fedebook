@@ -3,7 +3,7 @@
 <div class="row">
    
   <div class="user-cover-container">
-    <%= link_to @user.cover.url, 'data-lightbox' => 'cover-image', 'data-title' => 'Cover image' do %>
+     <%= link_to "#","data-toggle"=>"modal", "data-target"=>"#coverModal" do %>
       <%= image_tag @user.cover.url(:medium), class:'user-show-cover' %>
     <% end %>
   </div>
@@ -117,7 +117,7 @@
 </div>
     
   
-<!-- Modal -->
+<!-- Modal Avatar -->
 <div class="modal fade image_modal" id="avatarModal" tabindex="-1" role="dialog" 
    aria-labelledby="myModalLabel" aria-hidden="true">
    <div class="modal-dialog">
@@ -134,12 +134,12 @@
   
         <% if @user.id == current_user.id%>
         
-        <!-- USER WITH DEFAULT IMAGE -->
+        <!-- USER WITH DEFAULT IMAGE // FIRST UPLOAD -->
         
           <% if !@user.avatar.exists? %>
             <div class="modal-body">
               <div class="show_crop_image_form">
-                <%= image_tag @user.avatar.url(:large), :width => 550,:height => 550, id:'avatar-view'  %>
+                <%= image_tag @user.avatar.url(:large),  class:'avatar-view', :width => 650,:height => 650   %>
               </div>
             </div>
             
@@ -160,11 +160,39 @@
           <% end %>
         <% else %>
           <div class="modal-body">
-            <%= image_tag @user.avatar.url(:large), :width => 550,:height => 550  %>
+            <%= image_tag @user.avatar.url(:large), class:'avatar-view', :width => 650,:height => 650   %>
           </div>
         <% end %>
         
          
+        
+      </div><!-- /.modal-content -->
+    </div>
+  </div>
+  
+  
+  <!-- MODAL COVER  -->
+  
+  <div class="modal fade image_modal" id="coverModal" tabindex="-1" role="dialog" 
+   aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" 
+               data-dismiss="modal" aria-hidden="true">
+                  &times;
+            </button>
+            <h4 class="modal-title" id="myModalLabel">
+               Cover Picture
+            </h4>
+         </div>
+            <div class="modal-body">
+              <% if @user.cover? %>
+                <%= image_tag @user.cover.url, class:'cover', :width => 1000   %>
+              <% else %>
+                <%= image_tag @user.cover.url(:medium), class:'cover',:width => 1000   %>
+              <% end %>
+          </div>
         
       </div><!-- /.modal-content -->
     </div>
