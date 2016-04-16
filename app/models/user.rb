@@ -15,13 +15,29 @@ class User < ActiveRecord::Base
   
    has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>", large: "550x550>" }, 
    #:default_url => ActionController::Base.helpers.asset_path('missing.png')
+    :storage        => :s3,
+    :bucket            => ENV['AWS_BUCKET'],
+    :s3_credentials => {
+                        :access_key_id     => ENV['AWS_ACCESS_KEY_ID'    ],
+                        :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']},
+    :s3_protocol    => "https",
+    #:s3_host_name   => "s3-eu-west-1.amazonaws.com"  ,
    :default_url => ":style/missing.png"
   validates_attachment :avatar,
     #:presence => true,
     :size => { :in => 0..10.megabytes },
     :content_type => { :content_type => /^image\/(jpeg|png|gif|tiff)$/ }
     
-    has_attached_file :cover, styles: { medium: "850x315>"}, :default_url => ActionController::Base.helpers.asset_path('missing-cover.png')
+    has_attached_file :cover, styles: { medium: "850x315>"}, 
+    :storage        => :s3,
+    :bucket            => ENV['AWS_BUCKET'],
+    :s3_credentials => {
+                        :access_key_id     => ENV['AWS_ACCESS_KEY_ID'    ],
+                        :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']},
+    :s3_protocol    => "https",
+    :default_url => ActionController::Base.helpers.asset_path('missing-cover.png')
+    
+    
   validates_attachment :cover,
     #:presence => true,
     :size => { :in => 0..10.megabytes },

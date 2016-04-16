@@ -30,10 +30,10 @@
   </div>
 
 
-<h3 class="page-header">Recent activity</h3>    
-<div class="row">
-  <div class="col-md-12" id="posts">
-      <%= render  partial: "posts/post", :collection => @friends_feed, :as => :pst  %> 
+  <h3 class="page-header">Recent activity</h3>    
+  <div class="row">
+    <div class="col-md-12" id="posts">
+        <%= render  partial: "posts/post", :collection => @friends_feed, :as => :pst  %> 
+    </div>
   </div>
-</div>
 <% end %>
