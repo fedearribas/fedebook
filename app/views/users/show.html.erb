@@ -4,7 +4,7 @@
    
   <div class="user-cover-container">
     <%= link_to @user.cover.url, 'data-lightbox' => 'cover-image', 'data-title' => 'Cover image' do %>
-      <%= image_tag @user.cover.url, class:'user-show-cover' %>
+      <%= image_tag @user.cover.url(:medium), class:'user-show-cover' %>
     <% end %>
   </div>
    
