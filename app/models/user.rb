@@ -13,9 +13,9 @@ class User < ActiveRecord::Base
   validates :birth_date, presence: :true
   
   
-   has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, 
-   :default_url => ActionController::Base.helpers.asset_path('missing.png')
-   #:default_url => "images/:style/missing.png"
+   has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>", large: "550x550>" }, 
+   #:default_url => ActionController::Base.helpers.asset_path('missing.png')
+   :default_url => ":style/missing.png"
   validates_attachment :avatar,
     #:presence => true,
     :size => { :in => 0..10.megabytes },

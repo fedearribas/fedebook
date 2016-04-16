@@ -131,26 +131,38 @@
                Profile Picture
             </h4>
          </div>
-         <div class="modal-body">
-        <% if @user.id == current_user.id %>
-            <%= form_for(current_user, :url => '/crop_image',:method=>"PUT", id:"form-avatar") do |f| %>
-              <%= f.cropbox :avatar, :width => 550,:height => 550  %>
-          </div>
-                   
-           <div class="modal-footer">
-             
-             <div class="form-group">
-                <%= f.label "Change Image" %>
-                <%= f.file_field :avatar, id:'avatar-upload' %>
+  
+        <% if @user.id == current_user.id%>
+        
+        <!-- USER WITH DEFAULT IMAGE -->
+        
+          <% if !@user.avatar.exists? %>
+            <div class="modal-body">
+              <div class="show_crop_image_form">
+                <%= image_tag @user.avatar.url(:large), :width => 550,:height => 550, id:'avatar-view'  %>
               </div>
-              <%= f.submit 'Crop and Upload',:class=>"btn btn-primary" %>           
-                       
-            <% end %>
-                
-           </div>    
-              <% else %>
-              <%= image_tag @user.avatar.url,:width => 550,:height => 550   %>
-              <% end %>
+            </div>
+            
+            <div class="modal-footer">
+              <%= form_for(current_user, :url => '/upload_avatar',:method=>"PUT", id:"form-avatar-upload") do |f| %>
+              <div class="form-group pull-left">
+                <%= f.label "Upload Image" %> <br/>
+              <%= f.file_field :avatar, id:'avatar-upload-2' %>
+              </div>
+              <%= f.submit 'Upload',:class=>"btn btn-primary" %>
+               <% end %> 
+            </div>
+            
+          <% else %>
+            <!-- USER AVATAR CROP -->
+           <%= render 'users/crop_image_form'  %>
+           
+          <% end %>
+        <% else %>
+          <div class="modal-body">
+            <%= image_tag @user.avatar.url(:large), :width => 550,:height => 550  %>
+          </div>
+        <% end %>
         
          
         

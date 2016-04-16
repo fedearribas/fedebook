@@ -1,13 +1,15 @@
- <%= form_for(current_user, :url => '/crop_image',:method=>"PUT") do |f| %>
-  <div class="row">
-    <div class="col-md-8">
-      <%= f.cropbox :avatar,:width => 300,:height => 300 %>
-    </div>
-    <div class="col-md-4">
-      <%= f.crop_preview :avatar,:width => 150 %>
-    </div>
+  <div class="modal-body">
+    <%= form_for(current_user, :url => '/crop_image',:method=>"PUT", id:"form-avatar") do |f| %>
+      <%= f.cropbox :avatar, :width => 550,:height => 550  %>
   </div>
+                   
   <div class="modal-footer">
-   <%= f.submit 'Crop',:class=>"btn btn-primary" %>           
- </div>            
-<% end %>
+   
+    <div class="form-group pull-left">
+        <%= f.label "Change Image" %> <br/>
+        <%= f.file_field :avatar, id:'avatar-upload' %>
+    </div>
+      <%= f.submit 'Crop and Upload',:class=>"btn btn-primary" %>           
+               
+  <% end %>
+  </div>
