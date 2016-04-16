@@ -10,7 +10,7 @@ $(document).ready(function(){
    var avatarOriginalHeight;*/
    
    var cropView = document.getElementById("avatar-upload");
-   var visitView =document.getElementById("avatar-upload-2")
+   var uploadView =document.getElementById("avatar-upload-2")
    
    if (cropView) {
     document.getElementById("avatar-upload").onchange = function () {
@@ -22,7 +22,7 @@ $(document).ready(function(){
           image.src = e.target.result;
           
            avatarOrig = $("#avatar_cropbox").find("div").find("img").attr("src");
-           avatarDefault = $(".avatar-view").attr("src");
+          
           
           image.onload = function() {
               // get loaded data and render thumbnail.
@@ -83,12 +83,12 @@ $(document).ready(function(){
     };
    }
     
-    if (visitView) {
+    if (uploadView) {
       document.getElementById("avatar-upload-2").onchange = function () {
       var reader = new FileReader();
   
       reader.onload = function (e) {
-        avatarDefault = $("#avatar-view").attr("src");
+        avatarDefault = $(".avatar-view").attr("src");
         var image = new Image();
         image.src = e.target.result;
         var width = image.width;
@@ -96,7 +96,8 @@ $(document).ready(function(){
       
         image.onload = function() {
             // get loaded data and render thumbnail.
-          $("#avatar-view").attr("src", e.target.result);
+          $(".avatar-view").attr("src", e.target.result);
+          $("#btnUploadAvatar").prop('disabled', false);
          // $("#avatar-view").height(700);
         };
       }
