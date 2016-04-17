@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :posts
   has_many :friendships
   has_many :friends, through: :friendships, class_name: "User"
+  has_many :postlikes
   
   validates :first_name, presence: :true
   validates :last_name, presence: :true
@@ -97,6 +98,9 @@ class User < ActiveRecord::Base
     (followed.include?(user) && followers.include?(user)) || self == user
   end
 
+  def already_likes?(pst)
+    postlikes.map(&:post).include?(pst)
+  end
   
 end
 

@@ -1,6 +1,8 @@
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
 @import 'lightbox';
+@import "font-awesome";
+
 
 body {
   padding-top: 70px;
@@ -168,6 +170,16 @@ body {
     padding-left:0px;
 }
 
+.likes {
+  border: 1px solid rgba(0,0,0,0.1);
+  padding: 0px;
+  margin: 0px;
+}
+
+.btn-comments {
+  padding: 0px;
+  margin: 0px;
+}
 
 // ------------------NAVBAR ---------------------
 

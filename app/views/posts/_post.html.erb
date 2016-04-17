@@ -36,17 +36,14 @@
                 </div>
              <% end %>
             </div>
-              
-               <% unless pst.comments.empty? %>
-                 <a class="btn" data-toggle="collapse" data-parent="#post<%=pst.id%>" data-target="#comments<%=pst.id%>"> <small>Hide comments &raquo;</small></a>
-               <% end %>
+            <%@pst = pst%>
                
             </div>
-          
+          <%= render 'postlikes/likes_track',:locals => { :pst => @pst}  %>
     
              
            <!-- SE MUESTRAN LOS COMENTARIOS PARA CADA POST -->
-           <%@pst = pst%>
+           
              <div class="well comments" >
               <% unless pst.comments.empty? %>
               <section class="collapse in section-comments" id="comments<%=@pst.id%>">

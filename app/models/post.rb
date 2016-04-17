@@ -2,7 +2,7 @@ class Post < ActiveRecord::Base
     belongs_to :user
     belongs_to :profileposted, class_name: "User"
     has_many :comments, dependent: :destroy
-    
+    has_many :postlikes
     
      has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "avatar/missing.jpg"
      validates_attachment :avatar,
@@ -13,6 +13,10 @@ class Post < ActiveRecord::Base
     
     
     default_scope { order(created_at: :desc) }
+    
+    def likes_count
+      postlikes.count
+    end
     
 end
 
