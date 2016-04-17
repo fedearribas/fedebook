@@ -19,6 +19,13 @@ before_action :authenticate_user!, only: [:show]
       redirect_to :back
     end
   end
+  
+  def upload_cover
+    current_user.cover = (params[:user][:cover])
+    if current_user.save
+      redirect_to :back
+    end
+  end
 
   def crop_image
     if current_user.update(params[:user].permit!)

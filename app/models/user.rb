@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   validates :birth_date, presence: :true
   
   
-   has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>", large: "550x550>" }, 
+   has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>", large: "650x650>" }, 
    #:default_url => ActionController::Base.helpers.asset_path('missing.png')
    
     #:s3_host_name   => "s3-eu-west-1.amazonaws.com"  ,
@@ -101,7 +101,7 @@ class User < ActiveRecord::Base
   def already_likes?(pst)
     postlikes.map(&:post).include?(pst)
   end
-  
+
 end
 
 

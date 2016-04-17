@@ -117,7 +117,15 @@
 </div>
     
   
-<!-- Modal Avatar -->
+<!-- MODAL AVATAR -->
+
+  <%= image_tag @user.avatar.url(:large),  class:'avatar-view', :height => 650, hidden: true, id:'avatar-hidden'   %>
+  <% if @user.cover.exists? %>
+    <%= image_tag @user.cover.url, class:'cover', :width => 1000, hidden: true, id:'cover-hidden'   %>
+  <% else  %>
+    <%= image_tag @user.cover.url(:medium), class:'cover', :width => 1000, hidden: true, id:'cover-hidden'   %>
+  <% end %>
+
 <div class="modal fade image_modal" id="avatarModal" tabindex="-1" role="dialog" 
    aria-labelledby="myModalLabel" aria-hidden="true">
    <div class="modal-dialog">
@@ -131,18 +139,12 @@
                Profile Picture
             </h4>
          </div>
-  
+
         <% if @user.id == current_user.id%>
-        
-        <!-- USER WITH DEFAULT IMAGE // FIRST UPLOAD -->
-        
-          <% if !@user.avatar.exists? %>
             <div class="modal-body">
-              <div class="show_crop_image_form">
-                <%= image_tag @user.avatar.url(:large),  class:'avatar-view', :width => 650,:height => 650   %>
-              </div>
+                <%= image_tag @user.avatar.url(:large),  class:'avatar-view', :height => 650   %>
             </div>
-            
+
             <div class="modal-footer">
               <%= form_for(current_user, :url => '/upload_avatar',:method=>"PUT", id:"form-avatar-upload") do |f| %>
               <div class="form-group pull-left">
@@ -152,15 +154,10 @@
               <%= f.submit 'Upload',:class=>"btn btn-primary", disabled: true, id:'btnUploadAvatar' %>
                <% end %> 
             </div>
-            
-          <% else %>
-            <!-- USER AVATAR CROP -->
-           <%= render 'users/crop_image_form'  %>
-           
-          <% end %>
+       
         <% else %>
           <div class="modal-body">
-            <%= image_tag @user.avatar.url(:large), class:'avatar-view', :width => 650,:height => 650   %>
+            <%= image_tag @user.avatar.url(:large), class:'avatar-view', :height => 650   %>
           </div>
         <% end %>
         
@@ -186,13 +183,32 @@
                Cover Picture
             </h4>
          </div>
+          <% if @user.id == current_user.id%>
             <div class="modal-body">
-              <% if @user.cover? %>
-                <%= image_tag @user.cover.url, class:'cover', :width => 1000   %>
-              <% else %>
-                <%= image_tag @user.cover.url(:medium), class:'cover',:width => 1000   %>
+              <% if @user.cover.exists? %>
+                <%= image_tag @user.cover.url, class:'cover', :width => 1000 %>
+              <% else  %>
+                <%= image_tag @user.cover.url(:medium), class:'cover', :width => 1000 %>
               <% end %>
-          </div>
+            </div>
+             <div class="modal-footer">
+              <%= form_for(current_user, :url => '/upload_cover',:method=>"PUT", id:"form-cover-upload") do |f| %>
+              <div class="form-group pull-left">
+                <%= f.label "Upload Image" %> <br/>
+              <%= f.file_field :cover, id:'cover-upload' %>
+              </div>
+              <%= f.submit 'Upload',:class=>"btn btn-primary", disabled: true, id:'btnUploadCover' %>
+               <% end %> 
+            </div>
+          <% else %>
+            <div class="modal-body">
+             <% if @user.cover.exists? %>
+                <%= image_tag @user.cover.url, class:'cover', :width => 1000 %>
+              <% else  %>
+                <%= image_tag @user.cover.url(:medium), class:'cover', :width => 1000 %>
+              <% end %>
+            </div>
+          <% end %>
         
       </div><!-- /.modal-content -->
     </div>

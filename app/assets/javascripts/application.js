@@ -13,8 +13,8 @@
 //= require jquery
 //= require jquery.jcrop
 //= require papercrop
+//= require lightbox
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require turbolinks
 //= require_tree .
-//= require lightbox
