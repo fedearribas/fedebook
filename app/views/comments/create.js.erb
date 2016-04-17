@@ -1,1 +1,4 @@
-$('#comments171').append("<%= escape_javascript (render partial: 'posts/comment', :locals => { :pst => @pst }) %>");
+$('#comments<%=@pst.id%>').html("<%= escape_javascript (render partial: 'posts/comment', :collection => @pst.comments, :as => :comment, :locals => { :pst => @pst }) %>");
+$('#comment-box-<%=@pst.id%>').val("");
+$('#comments<%=@pst.id%>').collapse('show');
+$("html, body").animate({scrollTop: $('#comments<%=@pst.id%>').children().last().offset().top - 210}, 'slow');

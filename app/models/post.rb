@@ -2,7 +2,7 @@ class Post < ActiveRecord::Base
     belongs_to :user
     belongs_to :profileposted, class_name: "User"
     has_many :comments, dependent: :destroy
-    has_many :postlikes
+    has_many :postlikes, dependent: :destroy
     
      has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "avatar/missing.jpg"
      validates_attachment :avatar,
