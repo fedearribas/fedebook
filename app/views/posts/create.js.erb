@@ -1,2 +1,3 @@
 $('#posts').prepend("<%= escape_javascript (render partial: 'posts/post', :locals => {:pst => @post, :user => @user }) %>");
 $('#post-input-body').val("");
+$("html, body").animate({scrollTop: $('#post<%=@pst.id%>').children().last().offset().top - 210}, 'slow');
