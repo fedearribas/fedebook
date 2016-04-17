@@ -63,19 +63,19 @@
   </div>
   
   <div id="followers" class="tab-pane fade">
-    <div class="col-md-8 col-md-offset-2">
+    <div class="col-md-8 col-xs-12 col-md-offset-2">
       <h3>Followers</h3>
       <% if current_user.followed_by_and_follower?(@user) %>
         <% @user.followers.each do |f| %>
           <div class="well member">
             <div class="row">
-              <div class="col-md-1">
+              <div class="col-md-1 col-xs-2">
                 <%= image_tag f.avatar.url(:thumb), class:'user-show-avatar-posts'  %>
               </div>
-              <div class="col-md-6 post-creator">
+              <div class="col-md-6 col-xs-6 post-creator">
                   <%= link_to f.full_name, user_path(f), class:'post-username' %>
               </div>
-              <div class="col-md-1 pull-right">
+              <div class="col-md-1 col-xs-2 pull-right">
                 <% if current_user %>
                   <%= link_to "Follow", friendships_path(friend_id: f.id), method: :post, class:"btn btn-primary pull-right" unless current_user.follows_or_same?(f) %>
                   <%= link_to "Unfollow", friendship_path(current_user.current_friendship(f)), method: :delete,  data: {confirm: "Are you sure?"}, class:"btn btn-danger pull-right" unless current_user.not_follows(f) %>
@@ -89,19 +89,19 @@
   </div>
     
   <div id="followed" class="tab-pane fade">
-    <div class="col-md-8 col-md-offset-2">
+    <div class="col-md-8 col-xs-12 col-md-offset-2">
       <h3>Following</h3>
       <% if current_user.followed_by_and_follower?(@user) %>
         <% @user.followed.each do |f| %>
           <div class="well member">
             <div class="row">
-              <div class="col-md-1">
+              <div class="col-md-1 col-xs-2">
                 <%= image_tag f.avatar.url(:thumb), class:'user-show-avatar-posts'  %>
               </div>
-              <div class="col-md-6 post-creator">
+              <div class="col-md-6 col-xs-6 post-creator">
                   <%= link_to f.full_name, user_path(f), class:'post-username' %>
               </div>
-              <div class="col-md-1 pull-right">
+              <div class="col-md-1 col-xs-2 pull-right">
                 <% if current_user %>
                   <%= link_to "Follow", friendships_path(friend_id: f.id), method: :post, class:"btn btn-primary pull-right" unless current_user.follows_or_same?(f) %>
                   <%= link_to "Unfollow", friendship_path(current_user.current_friendship(f)), method: :delete,  data: {confirm: "Are you sure?"}, class:"btn btn-danger pull-right" unless current_user.not_follows(f) %>

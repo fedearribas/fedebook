@@ -1,7 +1,7 @@
 <div id="likes-<%=@pst.id%>">
   <div class="row likes">
 
-    <div class="col-md-2 col-md-offset-3">
+    <div class="col-md-2 col-xs-4 col-md-offset-3">
     <% if !current_user.already_likes?(@pst) %>
       <%= link_to user_post_postlikes_path(user_id: current_user.id, post_id: @pst.id), method: :post, remote:true do %>
        <i class="fa fa-thumbs-up" aria-hidden="true"></i> Like
@@ -12,10 +12,10 @@
       <% end %>
     <% end  %>
     </div>
-    <div class="col-md-2">
+    <div class="col-md-2 col-xs-4">
       <%= @pst.likes_count %> likes
     </div>
-    <div class="col-md-2">
+    <div class="col-md-2 col-xs-4">
         <a class="btn btn-comments" data-toggle="collapse" data-parent="#post<%=@pst.id%>" data-target="#comments<%=@pst.id%>"><i class="fa fa-comment" aria-hidden="true"></i> Comments &raquo;</a>
     </div>
   </div>

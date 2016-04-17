@@ -1,12 +1,12 @@
 <div class="comment" id="comment-<%=comment.id%>">
   <%= link_to "x", user_post_comment_path(current_user, pst,comment ), class:'close', remote: true, method: :delete if comment.user_id == current_user.id || pst.profile_posted == current_user.id %>
   <div class="row">
-    <div class="col-md-1">
+    <div class="col-md-1 col-xs-2">
       <div class="user-show-avatar-comments-container">
         <%= image_tag User.find(comment.user_id).avatar.url(:thumb), class:'user-show-avatar-comments'  %>
       </div>
     </div>
-    <div class="col-md-10 comment-creator">
+    <div class="col-md-10 col-xs-8 comment-creator">
       <small><%= link_to User.find(comment.user_id).full_name, user_path(comment.user_id) %> <%= comment.body %></small> <br/>
       <small><%= time_ago_in_words(comment.created_at) %> ago</small>
     </div>

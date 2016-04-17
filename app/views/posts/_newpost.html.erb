@@ -1,9 +1,9 @@
 <%= form_for([@user, @post], remote: true, :html => {class: "form-horizontal", multipart: true, role: "form"}) do |f| %>
     <div class="form-group">
-      <div class="col-md-10">
+      <div class="col-md-10 col-xs-8">
         <%= f.text_area :body, rows:2, :resize => :none, placeholder: "Type your post!", class:"form-control", :autocomplete => :off, id:"post-input-body" %>
       </div>
-      <div class="col-md-2">
+      <div class="col-md-2 col-xs-2">
         <%= f.submit "Post", id:'newpost', class:"btn btn-primary" %>
       </div>
     </div>
