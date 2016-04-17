@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     end
   end
   
-    resources :friendships, only: [:show, :create, :destroy]
+  resources :friendships, only: [:show, :create, :destroy]
     
     
   match 'crop_image' => 'users#crop_image', via: [:put]

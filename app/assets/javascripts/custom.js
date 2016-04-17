@@ -1,4 +1,41 @@
 $(document).ready(function(){
+  
+  
+  // VALIDATE NEW POST
+  var postPicture;
+  var postText;
+  
+  document.getElementById("post-picture").onchange = function () {
+    if ($(this).val() == '' && !postText) {
+      $('#newpost').prop('disabled', true);
+      postPicture = false;
+    }
+    else {
+      $('#newpost').prop('disabled', false);
+    }
+    if ($(this).val() != '')
+     postPicture = true;
+     else
+      postPicture = false;
+  };
+
+  if($('#post-input-body').val() ==  "") 
+   $('#newpost').prop('disabled', true);
+   
+  $('#post-input-body').keyup(function(){
+    if ($('#post-input-body').val() == "" && !postPicture) {
+      $('#newpost').prop('disabled', true);
+    }
+    else {
+      $('#newpost').prop('disabled', false);
+    }
+     if ($('#post-input-body').val() != "")
+       postText = true;
+    else
+      postText = false;
+  });
+  
+
     
    var avatarOrig;
    var avatarDefault;
