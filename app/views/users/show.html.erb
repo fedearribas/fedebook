@@ -8,7 +8,7 @@
     <% end %>
   </div>
 
-  <div class="col-md-2 col-xs-6 user-avatar-wrapper">
+  <div class="col-md-1 col-xs-6 col-sm-3 user-avatar-wrapper">
     <div class="user-avatar-container">
       <%= link_to "#","data-toggle"=>"modal", "data-target"=>"#avatarModal" do %>
        <%= image_tag @user.avatar.url(:medium), class:'user-show-avatar'  %>
@@ -16,26 +16,30 @@
     </div>
   </div>
   
-  <div class="col-md-3 col-xs-5 user-profile-name-container">
+  <div class="col-md-2 user-profile-name-container">
     <h2 class="user-profile-name"><%= @user.full_name %></h2>
    
   </div>
   
-  <div class="user-profile-follow-btns">
+  <div class="col-md-3 col-xs-3 col-sm-3 user-profile-follow-btns">
       <% if current_user %>
       <%= link_to "Follow", friendships_path(friend_id: @user.id), method: :post, class:"btn btn-primary" unless current_user.follows_or_same?(@user) %>
       <%= link_to "Unfollow", friendship_path(current_user.current_friendship(@user)), method: :delete,  data: {confirm: "Are you sure?"}, class:"btn btn-danger" unless current_user.not_follows(@user) %>
     <% end %>
   </div>
     
-  <div class="tabs-profile col-md-8 col-xs-12">
+  
+  
+</div>
+
+<div class="row">
+  <div class="tabs-profile col-md-8 col-md-offset-2 col-xs-12 col-sm-12">
      <ul class="nav nav-tabs">
         <li class="active"><a data-toggle="tab" href="#wall">Wall</a></li>
         <li><a data-toggle="tab" href="#followers">Followers</a></li>
         <li><a data-toggle="tab" href="#followed">Following</a></li>
       </ul>
   </div>
-  
 </div>
 
 <!-- PROFILE CONTENT -->
@@ -64,13 +68,13 @@
         <% @user.followers.each do |f| %>
           <div class="well member">
             <div class="row">
-              <div class="col-md-1 col-xs-2">
+              <div class="col-md-1 col-xs-2 col-sm-1">
                 <%= image_tag f.avatar.url(:thumb), class:'user-show-avatar-posts'  %>
               </div>
-              <div class="col-md-6 col-xs-6 post-creator">
+              <div class="col-md-6 col-xs-6 col-sm-6 post-creator">
                   <%= link_to f.full_name, user_path(f), class:'post-username' %>
               </div>
-              <div class="col-md-1 col-xs-2 pull-right">
+              <div class="col-md-1 col-xs-2 col-sm-1 pull-right">
                 <% if current_user %>
                   <%= link_to "Follow", friendships_path(friend_id: f.id), method: :post, class:"btn btn-primary pull-right" unless current_user.follows_or_same?(f) %>
                   <%= link_to "Unfollow", friendship_path(current_user.current_friendship(f)), method: :delete,  data: {confirm: "Are you sure?"}, class:"btn btn-danger pull-right" unless current_user.not_follows(f) %>
@@ -90,13 +94,13 @@
         <% @user.followed.each do |f| %>
           <div class="well member">
             <div class="row">
-              <div class="col-md-1 col-xs-2">
+              <div class="col-md-1 col-xs-2 col-sm-1">
                 <%= image_tag f.avatar.url(:thumb), class:'user-show-avatar-posts'  %>
               </div>
-              <div class="col-md-6 col-xs-6 post-creator">
+              <div class="col-md-6 col-xs-6 col-sm-6 post-creator">
                   <%= link_to f.full_name, user_path(f), class:'post-username' %>
               </div>
-              <div class="col-md-1 col-xs-2 pull-right">
+              <div class="col-md-1 col-xs-2 col-sm-1 pull-right">
                 <% if current_user %>
                   <%= link_to "Follow", friendships_path(friend_id: f.id), method: :post, class:"btn btn-primary pull-right" unless current_user.follows_or_same?(f) %>
                   <%= link_to "Unfollow", friendship_path(current_user.current_friendship(f)), method: :delete,  data: {confirm: "Are you sure?"}, class:"btn btn-danger pull-right" unless current_user.not_follows(f) %>
