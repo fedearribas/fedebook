@@ -11,34 +11,6 @@ body {
 }
 
 
-.alert-error {
-    background-color: #F2DEDE;
-    border-color: #EED3D7;
-    color: #B94A48;
-    text-align: left;
-}
-
-.alert-alert {
-    background-color: #F2DEDE;
-    border-color: #EBCCD1;
-    color: #A94442;
-    text-align: left;
-}
-
-.alert-success {
-    background-color: #DFF0D8;
-    border-color: #D6E9C6;
-    color: #468847;
-    text-align: left;
-}
-
-.alert-notice {
-    background-color: #DFF0D8;
-    border-color: #D6E9C6;
-    color: #468847;
-    text-align: left;
-}
-
 .listing-posts {
     padding-top: 30px;
 }
@@ -48,23 +20,8 @@ body {
 }
 
 .user-profile-name-container {
-     //margin-top: 250px;
-     //padding-top:250px;
-       top: 320px;
-       //left: 50%;
-  position:absolute;
+      top:-60px;
      z-index: 2;
-}
-
-@media screen and (max-width: 480px) {
-    .user-profile-name-container {
-       left: 50%;
-    }
-}
-@media screen and (min-width: 480px) {
-    .user-profile-name-container {
-       left: 30%;
-    }
 }
 
 .user-profile-name {
@@ -79,28 +36,16 @@ body {
 
 
 .user-profile-follow-btns {
-    //margin-top:325px;
-    position:absolute;
-    top: 405px;
-     left: 30%;
+    top: -30px;
     z-index: 2;
 }
 
 .tabs-profile {
-    //margin-top: 10px;
-    top: 90px;
-    position: relative;
-}
-
-.tab-content {
-  top: 110px;
-  position:relative;
+    top: -50px;
 }
 
 .user-avatar-wrapper {
-  // margin-top:220px;
-  top: 290px;
-  position:absolute;
+  top:-70px;
    z-index: 2;
 }
 .user-avatar-container {
@@ -142,14 +87,11 @@ body {
 
 .user-cover-container {
     position: relative;
-     //width: 1000px;
-     //width:75%;
     min-width:70%;
      max-width:100%;
     height: 315px;
      overflow:hidden;  
      z-index: 1;
-     //border: 3px solid white;
      border: 3px solid rgba(0,0,0,0.1);
 }
 
@@ -295,4 +237,36 @@ body {
     color: #ffffff;
     background-color: #88c3ae;
   }
+}
+
+
+// ALERTS
+
+
+.alert-error {
+    background-color: #F2DEDE;
+    border-color: #EED3D7;
+    color: #B94A48;
+    text-align: left;
+}
+
+.alert-alert {
+    background-color: #F2DEDE;
+    border-color: #EBCCD1;
+    color: #A94442;
+    text-align: left;
+}
+
+.alert-success {
+    background-color: #DFF0D8;
+    border-color: #D6E9C6;
+    color: #468847;
+    text-align: left;
+}
+
+.alert-notice {
+    background-color: #DFF0D8;
+    border-color: #D6E9C6;
+    color: #468847;
+    text-align: left;
 }

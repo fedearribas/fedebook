@@ -8,7 +8,7 @@
     <% end %>
   </div>
 
-  <div class="col-md-1 col-xs-6 col-sm-3 user-avatar-wrapper">
+  <div class="col-md-2 col-xs-6 col-sm-3  user-avatar-wrapper">
     <div class="user-avatar-container">
       <%= link_to "#","data-toggle"=>"modal", "data-target"=>"#avatarModal" do %>
        <%= image_tag @user.avatar.url(:medium), class:'user-show-avatar'  %>
@@ -16,19 +16,13 @@
     </div>
   </div>
   
-  <div class="col-md-3 user-profile-name-container">
+  <div class="col-md-3 col-sm-6 col-xs-6 user-profile-name-container">
     <h2 class="user-profile-name"><%= @user.full_name %></h2>
-   
-  </div>
-  
-  <div class="col-md-3 col-xs-3 col-sm-3 user-profile-follow-btns">
-      <% if current_user %>
+     <% if current_user %>
       <%= link_to "Follow", friendships_path(friend_id: @user.id), method: :post, class:"btn btn-primary" unless current_user.follows_or_same?(@user) %>
       <%= link_to "Unfollow", friendship_path(current_user.current_friendship(@user)), method: :delete,  data: {confirm: "Are you sure?"}, class:"btn btn-danger" unless current_user.not_follows(@user) %>
     <% end %>
-  </div>
-    
-  
+  </div> 
   
 </div>
 
