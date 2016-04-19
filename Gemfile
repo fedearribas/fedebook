@@ -15,6 +15,7 @@ gem 'paperclip', :git=> 'https://github.com/thoughtbot/paperclip', :ref => '523b
 gem "figaro"
 gem "font-awesome-rails"
 gem 'lightbox2-rails'
+gem 'fancybox2-rails'
 gem 'papercrop'
 gem 'aws-sdk', '< 2.0'
 # Use SCSS for stylesheets

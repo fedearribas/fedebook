@@ -13,6 +13,7 @@
  *= require_tree .
  *= require_self
  *= require lightbox
+ *= require fancybox
  *= require font-awesome
  *= require jquery.jcrop
  */

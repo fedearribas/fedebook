@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery.jcrop
 //= require papercrop
+//= require fancybox
 //= require lightbox
 //= require jquery_ujs
 //= require bootstrap-sprockets

@@ -10,6 +10,7 @@
 
   <div class="col-md-2 col-xs-6 col-sm-3  user-avatar-wrapper">
     <div class="user-avatar-container">
+      
       <%= link_to "#","data-toggle"=>"modal", "data-target"=>"#avatarModal" do %>
        <%= image_tag @user.avatar.url(:medium), class:'user-show-avatar'  %>
       <% end %>
