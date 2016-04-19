@@ -30,7 +30,7 @@
               
               <% if pst.avatar.exists? %>
                 <div>
-                  <%= link_to pst.avatar.url, 'data-lightbox' => "image#{pst.id}", 'data-title' => "#{pst.body}" do %>
+                  <%= link_to pst.avatar.url, id:'imageid', title: pst.body do %>
                     <%= image_tag pst.avatar.url(:medium) %>
                   <% end %>
                 </div>
