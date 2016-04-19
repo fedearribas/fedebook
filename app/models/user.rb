@@ -42,8 +42,13 @@ class User < ActiveRecord::Base
   end
   
   def self.search_by_name(name)
-     where('first_name LIKE ? or last_name LIKE ?',
+    if Rails.env.production?  
+     where('first_name ILIKE ? or last_name ILIKE ?',
       "%#{name}%", "%#{name}%").order(:first_name)
+    else
+      where('first_name LIKE ? or last_name LIKE ?',
+      "%#{name}%", "%#{name}%").order(:first_name)
+    end
   end
   
   def follows_or_same?(new_friend)
